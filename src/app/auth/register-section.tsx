@@ -58,12 +58,12 @@ const RegisterSection = () => {
         Отправляя форму вы соглашаетесь с условиями публичной оферты для{" "}
         <a
           href={userType == "tourist" ? "#tourist" : "#author"}
-          className="text-blue-600 visited:text-purple-600"
+          className="text-primary visited:text-purple-600"
         >
           {userType == "tourist" ? "путешественника" : "организатора"}
         </a>{" "}
         и соглашаетесь с политикой{" "}
-        <a href="#" className="text-blue-600 visited:text-purple-600">
+        <a href="#" className="text-primary visited:text-purple-600">
           обработки персональных данных
         </a>
       </span>
