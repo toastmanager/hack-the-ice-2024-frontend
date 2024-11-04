@@ -25,7 +25,7 @@ const TourReview = ({ review }: { review: ReviewEntity }) => {
         </div>
 
         <div className="flex items-center space-x-1">
-          {renderStars()} {/* Render stars based on the review score */}
+          {renderStars()} 
           <h1>{review.score}</h1>
         </div>
 
