@@ -19,7 +19,9 @@ export default function RootLayout({
     <html lang="en" className="h-full">
       <body className={`h-full ${inter.className} antialiased`}>
         <AppBar />
-        {children}
+        <div className="flex justify-center">
+          {children}
+        </div>
       </body>
     </html>
   );
