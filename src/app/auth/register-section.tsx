@@ -1,74 +1,186 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+
+const registerFormSchema = z.object({
+  fullname: z.string().min(4),
+  email: z.string().email(),
+  password: z.string().min(4),
+  passwordConfirm: z.string().min(4),
+  phone: z.string().optional(),
+  type: z.enum(["tourist", "author"], {
+    required_error: "Выберите тип вашего профиля",
+  }),
+});
 
 const RegisterSection = () => {
   const [userType, setUserType] = useState<"tourist" | "author">("tourist");
+  const form = useForm<z.infer<typeof registerFormSchema>>({
+    resolver: zodResolver(registerFormSchema),
+    defaultValues: {
+      email: "",
+      fullname: "",
+      password: "",
+      passwordConfirm: "",
+      phone: "",
+      type: "tourist",
+    },
+  });
+
+  const handleSubmit = (values: z.infer<typeof registerFormSchema>) => {
+    console.log(values);
+  };
 
   return (
-    <section className="flex flex-col gap-4">
-      <RadioGroup
-        defaultValue="is-tourist"
-        className="flex bg-background px-3 py-2 rounded-sm gap-6"
+    <Form {...form}>
+      <form
+        className="flex flex-col gap-4"
+        onSubmit={form.handleSubmit(handleSubmit)}
       >
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem
-            value="is-tourist"
-            onClick={() => setUserType("tourist")}
-            id="is-tourist"
-            className="w-6 h-6"
-          />
-          <Label htmlFor="is-tourist">Я путешественник</Label>
-        </div>
-        <div className="flex items-center space-x-2">
-          <RadioGroupItem
-            value="is-tour-creator"
-            onClick={() => setUserType("author")}
-            id="is-tour-creator"
-            className="w-6 h-6"
-          />
-          <Label htmlFor="is-tour-creator">Я автор туров</Label>
-        </div>
-      </RadioGroup>
-      <div className="grid grid-flow-row grid-cols-2 gap-x-4">
+        <FormField
+          control={form.control}
+          name="type"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <RadioGroup
+                  onValueChange={(value: "author" | "tourist") => {
+                    setUserType(value);
+                    field.onChange(value);
+                  }}
+                  defaultValue={field.value}
+                  className="flex bg-background px-3 py-2 rounded-sm space-x-6"
+                >
+                  <FormItem>
+                    <FormControl>
+                      <RadioGroupItem value="tourist" className="w-6 h-6" />
+                    </FormControl>
+                    <FormLabel>Я путешественник</FormLabel>
+                  </FormItem>
+                  <FormItem>
+                    <FormControl>
+                      <RadioGroupItem value="author" className="w-6 h-6" />
+                    </FormControl>
+                    <FormLabel>Я автор туров</FormLabel>
+                    <FormMessage />
+                  </FormItem>
+                </RadioGroup>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        ></FormField>
         <div>
-          <Label>ФИО</Label>
-          <Input className="bg-background" type="text" />
-        </div>
-        <div>
-          <Label>Почта</Label>
-          <Input className="bg-background" type="email" />
-        </div>
-        <div>
-          <Label>Пароль</Label>
-          <Input className="bg-background" type="password" />
-        </div>
-        {userType === "author" && (
-          <div>
-            <Label>Номер</Label>
-            <Input className="bg-background" type="tel" />
+          <div className="grid grid-flow-row grid-cols-2 gap-x-4">
+            <FormField
+              control={form.control}
+              name="fullname"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>ФИО</FormLabel>
+                  <FormControl>
+                    <Input className="bg-background" type="text" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Почта</FormLabel>
+                  <FormControl>
+                    <Input className="bg-background" type="email" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Пароль</FormLabel>
+                  <FormControl>
+                    <Input
+                      className="bg-background"
+                      type="password"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="passwordConfirm"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Подтверждение пароля</FormLabel>
+                  <FormControl>
+                    <Input
+                      className="bg-background"
+                      type="password"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
-        )}
-      </div>
-      <span className="text-[0.75rem]">
-        Отправляя форму вы соглашаетесь с условиями публичной оферты для{" "}
-        <a
-          href={userType == "tourist" ? "#tourist" : "#author"}
-          className="text-primary visited:text-purple-600"
-        >
-          {userType == "tourist" ? "путешественника" : "организатора"}
-        </a>{" "}
-        и соглашаетесь с политикой{" "}
-        <a href="#" className="text-primary visited:text-purple-600">
-          обработки персональных данных
-        </a>
-      </span>
-      <Button className="w-full">Зарегистрироваться</Button>
-    </section>
+          {userType === "author" && (
+            <FormField
+              control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Номер телефона</FormLabel>
+                  <FormControl>
+                    <Input className="bg-background" type="tel" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
+        </div>
+        <span className="text-[0.75rem]">
+          Отправляя форму вы соглашаетесь с условиями публичной оферты для{" "}
+          <a
+            href={userType == "tourist" ? "#tourist" : "#author"}
+            className="text-primary visited:text-purple-600"
+          >
+            {userType == "tourist" ? "путешественника" : "организатора"}
+          </a>{" "}
+          и соглашаетесь с политикой{" "}
+          <a href="#" className="text-primary visited:text-purple-600">
+            обработки персональных данных
+          </a>
+        </span>
+        <Button className="w-full" type="submit">
+          Зарегистрироваться
+        </Button>
+      </form>
+    </Form>
   );
 };
 
