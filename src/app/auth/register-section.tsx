@@ -7,7 +7,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useState } from "react";
 
 const RegisterSection = () => {
-  let [userType, setUserType] = useState<"tourist" | "author">("tourist");
+  const [userType, setUserType] = useState<"tourist" | "author">("tourist");
 
   return (
     <section className="flex flex-col gap-4">
