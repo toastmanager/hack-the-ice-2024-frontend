@@ -4,6 +4,7 @@ import Appbar from './appbar';
 
 const meta = {
   component: Appbar,
+  title: 'AppBar'
 } satisfies Meta<typeof Appbar>;
 
 export default meta;

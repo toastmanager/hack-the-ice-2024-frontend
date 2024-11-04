@@ -4,7 +4,7 @@ const TourCard = ({ tour }: { tour: TourEntity }) => {
   return (
     <div className="bg-card text-card-foreground w-96 rounded-3xl">
       <div className="relative">
-        <button className="absolute top-0 right-0 bg-card px-[11px] py-2 rounded-tr-3xl rounded-bl-lg">
+        <button className="absolute top-0 right-0 bg-card px-[11px] py-2 rounded-tr-[1.4rem] rounded-bl-lg">
           {tour.inBookmark ? (
             <Icon icon="mage:heart-fill" width={24} className="text-primary" />
           ) : (
@@ -14,9 +14,7 @@ const TourCard = ({ tour }: { tour: TourEntity }) => {
         <img
           alt="image"
           src={tour.imageUrl}
-          width={393}
-          height={170}
-          className="rounded-t-3xl bg-gray-600"
+          className="rounded-t-3xl bg-gray-600 object-left-top object-cover w-96 h-44"
         />
         <div className="flex absolute bottom-0 w-full justify-between">
           <div className="flex items-center bg-card pl-3 pr-4 py-1 rounded-tr-lg">
@@ -33,9 +31,11 @@ const TourCard = ({ tour }: { tour: TourEntity }) => {
         <div className="flex justify-between mt-4">
           <div className="flex gap-1">
             <span className="text-xl font-semibold">{tour.price} ₽</span>
-            <span className="text-sm line-through text-foreground-alternative">
-              {tour.price} ₽
-            </span>
+            {tour.previousPrice && (
+              <span className="text-sm line-through text-foreground-alternative">
+                {tour.previousPrice} ₽
+              </span>
+            )}
           </div>
           <div className="flex items-center gap-1">
             <Icon icon="mage:star-fill" className="text-primary text-xl" />

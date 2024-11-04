@@ -1,9 +1,10 @@
 interface TourEntity {
   imageUrl: string;
   location: string;
-  inBookmark: boolean;
+  inBookmark?: boolean;
   duration: string;
   title: string;
   price: number;
+  previousPrice?: number;
   score: number;
 }
