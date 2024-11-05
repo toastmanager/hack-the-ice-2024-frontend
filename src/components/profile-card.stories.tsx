@@ -8,7 +8,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
-    ProfileCard: {
+    profileEntity: {
       id: "1",
       fullname: "Егоров Бобр Бебрарович",
       toursConductedNumber: 22,
