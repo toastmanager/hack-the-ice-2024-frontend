@@ -7,4 +7,5 @@ interface TourEntity {
   price: number;
   previousPrice?: number;
   score: number;
+  
 }
