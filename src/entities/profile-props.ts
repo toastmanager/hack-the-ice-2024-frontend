@@ -1,10 +1,6 @@
-interface ProfileCardEntity {
-    imageUrl: string;
-    name: string;
-    isVerified: boolean;
-    touristcount: number;
-    score: number;
-    tours: number;
-    published: number;
-  }
-  
+interface ProfileCardEntity extends UserEntity {
+  score: number;
+  toursConductedNumber: number;
+  toursPublishedNumber: number;
+  touristsGuidedNumber: number;
+}
