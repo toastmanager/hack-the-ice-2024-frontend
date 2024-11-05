@@ -12,7 +12,9 @@ const ProfileCard = ({ profileEntity }: { profileEntity: ProfileEntity }) => {
 
       <Avatar className="absolute top-44 left-5 border-4 border-card w-[136px] h-[136px]">
         <AvatarImage src={profileEntity.avatarUrl} className="object-cover" />
-        <AvatarFallback>Avatar</AvatarFallback>
+        <AvatarFallback className="bg-primary text-primary-foreground text-6xl font-medium">
+          {profileEntity.fullname[0]}
+        </AvatarFallback>
       </Avatar>
 
       <div className="pt-14 px-5 md:px-0 md:pt-0 md:pl-44 mt-14 md:mt-5 pb-5 mr-5 flex flex-wrap justify-between items-center">
