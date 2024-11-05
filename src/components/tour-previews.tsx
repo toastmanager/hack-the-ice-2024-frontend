@@ -47,11 +47,11 @@ const TourPreview = ({tourpreview}: {tourpreview: TourPreviewEntity}) => {
                 <div className="w-full py-2 px-2 mt-2 rounded-md flex space-x-2">
                     <div className="flex items-center">
                         <Icon icon="solar:sun-bold" className="text-lg text-[#4ABCA9]" />
-                        <h1 className="ml-2">{tourpreview.howLongDays}</h1>
+                        <h1 className="ml-2">{tourpreview.howLongDays} дня</h1>
                     </div>
                     <div className="flex items-center">
                         <Icon icon="solar:moon-bold" className="text-lg text-[#4ABCA9]" />
-                        <h1 className="ml-2">{tourpreview.howLongNights}</h1>
+                        <h1 className="ml-2">{tourpreview.howLongNights} ночи</h1>
                     </div>
                 </div>
                 <Button
