@@ -12,26 +12,28 @@ const TourReview = ({ review }: { review: ReviewEntity }) => {
     return stars;
   };
 
-  const username = review.UserName.split(" ");
+  const fullname = review.user.fullname.split(" ");
 
   return (
     <div className="p-5 bg-card rounded-md text-card-foreground">
       <div className="flex mb-3 items-center">
         <Avatar className="w-12 h-12">
           <AvatarImage
-            src={review.imageUrl}
+            src={review.user.avatarUrl}
             alt="Avatar"
             className="object-cover object-left-top"
           />
           <AvatarFallback className="bg-primary text-primary-foreground text-3xl font-medium">
-            {review.UserName[0]}
+            {fullname[0][0]}
           </AvatarFallback>
         </Avatar>
 
         <div className="w-full pl-4">
           <div className="flex justify-between items-center">
-            <h3 className="text-base font-medium">{`${username[0]} ${username[1][0]}.`}</h3>
-            <p className="text-sm text-foreground-alternative">{review.date}</p>
+            <h3 className="text-base font-medium">{`${fullname[0]} ${fullname[1][0]}.`}</h3>
+            <p className="text-sm text-foreground-alternative">
+              {review.date.toLocaleDateString()}
+            </p>
           </div>
 
           <div className="relative h-5">
