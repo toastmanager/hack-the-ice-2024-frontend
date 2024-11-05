@@ -16,16 +16,37 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-const registerFormSchema = z.object({
-  fullname: z.string().min(4),
-  email: z.string().email(),
-  password: z.string().min(4),
-  passwordConfirm: z.string().min(4),
-  phone: z.string().optional(),
-  type: z.enum(["tourist", "author"], {
-    required_error: "Выберите тип вашего профиля",
-  }),
-});
+const registerFormSchema = z
+  .object({
+    fullname: z.string().min(4),
+    email: z.string().email(),
+    password: z.string().min(4),
+    passwordConfirm: z.string().min(4),
+    phone: z.string().optional(),
+    type: z.enum(["tourist", "author"], {
+      required_error: "Выберите тип вашего профиля",
+    }),
+  })
+  .refine(
+    (data) => {
+      return data.password === data.passwordConfirm;
+    },
+    {
+      message: "Пароли не совпадают",
+      path: ["passwordConfirm"],
+    }
+  )
+  .refine(
+    (data) => {
+      return (
+        (data.type === "author" && data.phone?.length === 12) || data.type === "tourist"
+      );
+    },
+    {
+      message: "Укажите номер телефона",
+      path: ["phone"],
+    }
+  );
 
 const RegisterSection = () => {
   const [userType, setUserType] = useState<"tourist" | "author">("tourist");
@@ -147,7 +168,7 @@ const RegisterSection = () => {
               )}
             />
           </div>
-          {userType === "author" && (
+          {(userType === "author" || form.getValues('phone')) && (
             <FormField
               control={form.control}
               name="phone"
@@ -155,7 +176,7 @@ const RegisterSection = () => {
                 <FormItem>
                   <FormLabel>Номер телефона</FormLabel>
                   <FormControl>
-                    <Input className="bg-background" type="tel" {...field} />
+                    <Input placeholder="+71234567890" className="bg-background" type="tel" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
