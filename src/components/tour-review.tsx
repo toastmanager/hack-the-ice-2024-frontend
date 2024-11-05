@@ -1,36 +1,55 @@
-import Link from "next/link";
 import { Icon } from "@iconify/react";
-import { Input } from "./ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const TourReview = ({ review }: { review: ReviewEntity }) => {
   const renderStars = () => {
     const stars = [];
     for (let i = 0; i < review.score; i++) {
-      stars.push(<Icon key={i} icon="mdi:star" className="text-green-400" />); {/* ai ass */}
+      stars.push(
+        <Icon key={i} icon="mage:star-fill" className="text-primary" />
+      );
     }
     return stars;
   };
 
+  const username = review.UserName.split(" ");
+
   return (
-    <div className="flex items-start relative my-4 border rounded-md p-5 bg-white">
-      <Avatar>
-        <AvatarImage src={review.imageUrl} alt="Avatar" className="w-12 h-12 rounded-full" />
-      </Avatar>
+    <div className="p-5 bg-card rounded-md text-card-foreground">
+      <div className="flex mb-3 items-center">
+        <Avatar className="w-12 h-12">
+          <AvatarImage
+            src={review.imageUrl}
+            alt="Avatar"
+            className="object-cover object-left-top"
+          />
+          <AvatarFallback className="bg-primary text-primary-foreground text-3xl font-medium">
+            {review.UserName[0]}
+          </AvatarFallback>
+        </Avatar>
 
-      <div className="w-full pl-4">
-        <div className="flex justify-between items-center">
-          <h3 className="text-lg font-semibold">{review.UserName}</h3>
-          <p className="text-sm text-gray-600">{review.Date}</p>
+        <div className="w-full pl-4">
+          <div className="flex justify-between items-center">
+            <h3 className="text-base font-medium">{`${username[0]} ${username[1][0]}.`}</h3>
+            <p className="text-sm text-foreground-alternative">{review.date}</p>
+          </div>
+
+          <div className="relative h-5">
+            <div className="flex space-x-1 absolute top-0 left-0">
+              {renderStars()}
+            </div>
+            <div className="flex space-x-1 absolute top-0 left-0">
+              <Icon icon="mage:star" className="text-primary" />
+              <Icon icon="mage:star" className="text-primary" />
+              <Icon icon="mage:star" className="text-primary" />
+              <Icon icon="mage:star" className="text-primary" />
+              <Icon icon="mage:star" className="text-primary" />
+              <span className="text-sm">{review.score}</span>
+            </div>
+          </div>
         </div>
-
-        <div className="flex items-center space-x-1">
-          {renderStars()} 
-          <h1>{review.score}</h1>
-        </div>
-
-        <p className="text-sm text-gray-800 mt-2">{review.description}</p>
       </div>
+      <span className="text-sm">{review.text}</span>
     </div>
   );
 };
