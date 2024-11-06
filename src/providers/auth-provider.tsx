@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const fetchMe = async () => {
       try {
-        const response = await api.get("auth/me");
+        const response = await api.post("auth/me");
         setUser(response.data);
       } catch (error) {
         setUser(null);
@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     const fetchAccessToken = async () => {
       try {
-        const response = await api.get("auth/refresh");
+        const response = await api.post("auth/refresh");
         setAccessToken(response.data.access_token);
       } catch (error) {
         setUser(null);
@@ -66,7 +66,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
         if (error.response.status === 401) {
           try {
-            const response = await api.get("api/refresh");
+            const response = await api.get("auth/refresh");
 
             setAccessToken(response.data.access_token);
 

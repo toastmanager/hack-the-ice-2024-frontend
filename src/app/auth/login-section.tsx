@@ -14,6 +14,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import api from "@/lib/api-client";
 
 const loginFormSchema = z.object({
   email: z.string().email(),
@@ -31,8 +32,9 @@ const LoginSection = () => {
     },
   });
 
-  const handleSubmit = (values: z.infer<typeof loginFormSchema>) => {
-    console.log(values);
+  const handleSubmit = async (values: z.infer<typeof loginFormSchema>) => {
+    const response = await api.postForm("auth/login", values);
+    console.log(response);
   };
 
   return (
