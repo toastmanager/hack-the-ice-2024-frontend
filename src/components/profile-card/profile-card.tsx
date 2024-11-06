@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import ActionButtons from "./profile-action-buttons";
+import ProfileActionButtons from "./profile-action-buttons";
 
 const ProfileCard = ({ profileEntity }: { profileEntity: ProfileEntity }) => {
   return (
@@ -61,7 +61,7 @@ const ProfileCard = ({ profileEntity }: { profileEntity: ProfileEntity }) => {
             </div>
           </div>
         </div>
-        <ActionButtons profileId={profileEntity.id} />
+        <ProfileActionButtons profileId={profileEntity.id} />
       </div>
     </div>
   );

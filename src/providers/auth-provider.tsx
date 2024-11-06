@@ -9,7 +9,17 @@ import {
   useContext,
 } from "react";
 
-const AuthContext = createContext<UserEntity | null>(null);
+interface AuthContextType {
+  user: UserEntity | null;
+  setAccessToken: (token: string | null) => void;
+  setUser: (user: UserEntity | null) => void;
+}
+
+const AuthContext = createContext<AuthContextType>({
+  user: null,
+  setAccessToken: () => {},
+  setUser: () => {},
+});
 
 export const useAuth = () => {
   const authContext = useContext(AuthContext);
@@ -27,30 +37,23 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       console.log(response.data);
       setUser(response.data);
     } catch (error) {
-      console.log(error);
+      console.warn(error);
       setUser(null);
     }
   };
 
   const fetchAccessToken = async () => {
-    const fetch = async () => {
-      try {
-        return await api.post("auth/refresh", undefined, {
-          withCredentials: true,
-        });
-      } catch (error) {
-        console.log(error);
-        return null;
-      }
-    };
-
-    const response = await fetch();
-    if (response) {
+    try {
+      const response = await api.post("auth/refresh", undefined, {
+        withCredentials: true,
+      });
+      console.log(response);
       setAccessToken(response.data.access_token);
       setIsRetry(false);
-    } else {
+    } catch (error) {
       setAccessToken(null);
       setUser(null);
+      console.warn(error);
     }
   };
 
@@ -110,5 +113,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     };
   }, [isRetry, accessToken]);
 
-  return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider
+      value={{ user: user, setAccessToken: setAccessToken, setUser: setUser }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };

@@ -3,8 +3,8 @@
 import { useAuth } from "@/providers/auth-provider";
 import { Button } from "../ui/button";
 
-const ActionButtons = ({ profileId }: { profileId: string }) => {
-  const user = useAuth();
+const ProfileActionButtons = ({ profileId }: { profileId: string }) => {
+  const {user} = useAuth();
 
   if (profileId === user?.id) {
     return (
@@ -26,4 +26,4 @@ const ActionButtons = ({ profileId }: { profileId: string }) => {
   }
 };
 
-export default ActionButtons;
+export default ProfileActionButtons;

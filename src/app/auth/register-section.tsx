@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import api from "@/lib/api-client";
+import { useAuth } from "@/providers/auth-provider";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -52,6 +53,8 @@ const registerFormSchema = z
 
 const RegisterSection = () => {
   const [userType, setUserType] = useState<"tourist" | "author">("tourist");
+  const currentUser = useAuth();
+
   const form = useForm<z.infer<typeof registerFormSchema>>({
     resolver: zodResolver(registerFormSchema),
     defaultValues: {
@@ -65,9 +68,19 @@ const RegisterSection = () => {
   });
 
   const handleSubmit = async (values: z.infer<typeof registerFormSchema>) => {
-    await api.post("auth/register", values, {
-      withCredentials: true,
-    });
+    try {
+      if (currentUser) {
+        await api.post("auth/logout", undefined, {
+          withCredentials: true,
+        });
+      }
+      await api.post("auth/register", values, {
+        withCredentials: true,
+      });
+      window.location.href = "/";
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
