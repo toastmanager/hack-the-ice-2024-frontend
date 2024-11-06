@@ -33,7 +33,9 @@ const LoginSection = () => {
   });
 
   const handleSubmit = async (values: z.infer<typeof loginFormSchema>) => {
-    const response = await api.post("auth/login", values);
+    const response = await api.post("auth/login", values, {
+      withCredentials: true,
+    });
     console.log(response);
   };
 
