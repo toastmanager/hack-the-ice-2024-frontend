@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import AuthorContact from "./author-contact";
 const meta = {
   component: AuthorContact,
-  title: "Contact author Card",
+  title: "Author Contact Section",
 } satisfies Meta<typeof AuthorContact>;
 export default meta;
 type Story = StoryObj<typeof meta>;

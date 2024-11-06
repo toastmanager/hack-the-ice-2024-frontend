@@ -8,7 +8,7 @@ const AuthorContact = ({
   authorcontact: AuthorContactEntity;
 }) => {
   return (
-    <div className="flex rounded-md bg-card p-5 justify-between">
+    <div className="flex rounded-2xl bg-card p-5 justify-between">
       <div className="w-[540px] space-y-5">
         <div>
           <h1 className="text-3xl font-semibold">
