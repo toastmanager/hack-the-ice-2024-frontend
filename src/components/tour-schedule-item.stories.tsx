@@ -4,7 +4,7 @@ import TourScheduleItem from './tour-schedule-item';
 
 const meta = {
   component: TourScheduleItem,
-  title: 'Tour Schedule'
+  title: 'Tour Schedule Item'
 } satisfies Meta<typeof TourScheduleItem>;
 
 export default meta;
