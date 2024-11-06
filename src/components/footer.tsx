@@ -2,7 +2,7 @@ import { Icon } from "@iconify/react";
 import logo from "../../public/logo.svg";
 import Image from "next/image";
 
-const Footer = () => {
+const Footer = () => {  
   return (
     <section className="w-full bg-card px-3 py-5">
       <div className="m-auto max-w-[1200px] relative">
