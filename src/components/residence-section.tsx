@@ -1,7 +1,11 @@
 import { Icon } from "@iconify/react";
 import TourSectionItem from "./tour-section-item";
 
-const ResidenceSection = ({ residence }: { residence: ResidenceSectionEntity }) => {
+const ResidenceSection = ({
+  residence,
+}: {
+  residence: ResidenceSectionEntity;
+}) => {
   const comfortDescriptions = [
     "Низкий",
     "Ниже среднего",
