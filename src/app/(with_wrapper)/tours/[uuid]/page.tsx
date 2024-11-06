@@ -1,10 +1,30 @@
 import AuthorContact from "@/components/author-contact";
 import ResidenceSection from "@/components/residence-section";
 import TourFeatures from "@/components/tour-features";
+import TourReviewsSection from "@/components/tour-reviews-section";
 import TourScheduleSection from "@/components/tour-schedule-section";
 
 const TourDetailsPage = async ({ params }: { params: { uuid: string } }) => {
   const { uuid } = await params;
+
+  const reviews: ReviewEntity[] = Array.from({ length: 14}, (_, index) => {
+    const review: ReviewEntity = {
+      date: new Date(),
+      score: 4,
+      text: "Отличный тур!!!",
+      user: {
+        id: index.toString(),
+        fullname: "Дронова Наталья Петровна",
+        isVerified: false,
+        avatarUrl: "",
+        bannerUrl: "",
+      },
+    };
+
+    return review;
+  });
+
+  console.log(reviews);
 
   return (
     <div className="min-h-full flex justify-center">
@@ -38,6 +58,7 @@ const TourDetailsPage = async ({ params }: { params: { uuid: string } }) => {
                 ],
               }}
             />
+            <TourReviewsSection reviews={reviews} />
             <AuthorContact
               authorcontact={{
                 authorName: "Егорова Валентина",

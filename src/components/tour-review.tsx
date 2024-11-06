@@ -30,7 +30,7 @@ const TourReview = ({ review }: { review: ReviewEntity }) => {
 
         <div className="w-full pl-4">
           <div className="flex justify-between items-center">
-            <h3 className="text-base font-medium">{`${fullname[0]} ${fullname[1][0]}.`}</h3>
+            <h3 className="text-base font-medium">{`${fullname[1]} ${fullname[0][0]}.`}</h3>
             <p className="text-sm text-foreground-alternative">
               {review.date.toLocaleDateString()}
             </p>
