@@ -1,5 +1,5 @@
 interface TourSectionItemEntity {
-  day: string;
+  duration: string;
   title: string;
   imagesUrls: string[];
   description: string;

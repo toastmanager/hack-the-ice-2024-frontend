@@ -26,7 +26,7 @@ const TourScheduleItem = ({ schedule }: { schedule: TourSectionItemEntity }) => 
   return (
     <div className="flex gap-x-16 gap-y-4 flex-wrap md:flex-nowrap">
       <div className="min-w-32 py-3 border-2 rounded-full text-nowrap font-semibold h-min flex justify-center">
-        <span>День {schedule.day}</span>
+        <span>{schedule.duration}</span>
       </div>
       <div>
         <h1 className="mb-4 text-xl font-bold">{schedule.title}</h1>
