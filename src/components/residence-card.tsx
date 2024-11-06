@@ -3,7 +3,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "@/components/ui/button";
 const ResidenceCard = ({ residence }: { residence: ResidenceCardEntity }) => {
   return (
-    <div className=" relative my-4 border rounded-md p-3 px-6 bg-white flex items-center grid grid-cols-3 w-2/3">
+    
+    <div className=" relative my-4 border rounded-md py-5 px-6 bg-white items-center w-2/3 ">
+        <h1 className="text-2xl font-bold pb-5">Проживание</h1>
+        <div className="grid grid-cols-3 w-full">
         <div className="flex items-center">
       <Icon icon="hugeicons:smile" className="text-primary w-16 h-16 rounded-full" />
         <div className="w-full pl-2 pt-1 flex flex-col ">
@@ -49,7 +52,7 @@ const ResidenceCard = ({ residence }: { residence: ResidenceCardEntity }) => {
         </div>
         
       </div>
-      
+      </div>
     </div>
   );
 };
