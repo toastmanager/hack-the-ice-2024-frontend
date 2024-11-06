@@ -2,7 +2,7 @@ import { Icon } from "@iconify/react";
 
 const StepsBar = ({ stepbar }: { stepbar: StepBarEntity }) => {
   return (
-    <div className={`static w-${stepbar.step}/5 h-12 bg-gradient-to-r from-[#4ABCA9] to-transparent rounded-l-lg`}>{/* Set 'to-transparent' here */}
+    <div className={`static w-${stepbar.step}/5 h-12 bg-gradient-to-r from-[#4ABCA9] to-transparent rounded-l-lg`}>
       <div className="flex py-0.5 w-full">
         <div className="grid grid-cols-5 absolute p-2 ml-0.5 bg-white w-full rounded-md h-11 items-center gap-5 pl-12">
           <span className={stepbar.step === 1 ? "text-[#4ABCA9]" : ""}>1.Основная информация &gt;</span>
