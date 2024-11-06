@@ -37,13 +37,13 @@ const TourFeatures = ({ tourfeat }: { tourfeat: TourFeaturesEntity }) => {
             <Icon
                 key={index}
                 icon={index < score ? "mdi:circle-outline" : "material-symbols:circle"}
-                className="text-green-400"
+                className="text-primary"
             />
         ));
     };
 
     return (
-        <div className="w-full py-4 px-2 sm:px-5 bg-white rounded-md grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <div className="w-full py-4 px-2 sm:px-5 bg-card rounded-md grid grid-cols-1 sm:grid-cols-3 gap-5">
             <div className="flex flex-col">
                 <span className="pb-2 text-lg font-semibold">Активность</span>
                 {renderScoreIcons('activity')}
