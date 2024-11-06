@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-const TourScheduleItem = ({ schedule }: { schedule: TourSectionItemEntity }) => {
+const TourSectionItem = ({ item: schedule }: { item: TourSectionItemEntity }) => {
   const textRef = useRef(null);
   const [isOverflowed, setIsOverflowed] = useState(false);
   const [isTextHidden, setIsTextHidden] = useState(true);
@@ -29,7 +29,7 @@ const TourScheduleItem = ({ schedule }: { schedule: TourSectionItemEntity }) => 
         <span>{schedule.duration}</span>
       </div>
       <div>
-        <h1 className="mb-4 text-xl font-bold">{schedule.title}</h1>
+        <h1 className="mb-4 text-xl font-semibold">{schedule.title}</h1>
 
         <div className="flex flex-wrap gap-x-4 gap-y-3 w-full">
           {schedule.imagesUrls.slice(0, 3).map((_, index) => (
@@ -65,4 +65,4 @@ const TourScheduleItem = ({ schedule }: { schedule: TourSectionItemEntity }) => 
   );
 };
 
-export default TourScheduleItem;
+export default TourSectionItem;

@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import TourScheduleItem from "./tour-section-item";
+import TourSectionItem from "./tour-section-item";
 
 const meta = {
-  component: TourScheduleItem,
+  component: TourSectionItem,
   title: "Tour Section Item",
-} satisfies Meta<typeof TourScheduleItem>;
+} satisfies Meta<typeof TourSectionItem>;
 
 export default meta;
 
@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    schedule: {
+    item: {
       duration: "1 день",
       title: "Знакомство с беброй",
       imagesUrls: [
@@ -29,7 +29,7 @@ export const Default: Story = {
 
 export const WithShortDescription: Story = {
   args: {
-    schedule: {
+    item: {
       duration: "2-4 день",
       title: "Листвянка и Большой Байкальский круговорот",
       imagesUrls: [
@@ -45,7 +45,7 @@ export const WithShortDescription: Story = {
 
 export const WithOneImage: Story = {
   args: {
-    schedule: {
+    item: {
       duration: "6 ночей",
       title: "Irkuts city center",
       imagesUrls: [
