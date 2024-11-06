@@ -21,25 +21,29 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [isRetry, setIsRetry] = useState<boolean>(false);
 
+  const fetchMe = async () => {
+    try {
+      const response = await api.post("auth/me", accessToken);
+      setUser(response.data);
+    } catch (error) {
+      setUser(null);
+    }
+  };
+
+  const fetchAccessToken = async () => {
+    try {
+      const response = await api.post("auth/refresh", undefined, {
+        withCredentials: true,
+      });
+      setAccessToken(response.data.access_token);
+      setIsRetry(false);
+    } catch (error) {
+      setAccessToken(null);
+      setUser(null);
+    }
+  };
+
   useEffect(() => {
-    const fetchMe = async () => {
-      try {
-        const response = await api.post("auth/me");
-        setUser(response.data);
-      } catch (error) {
-        setUser(null);
-      }
-    };
-
-    const fetchAccessToken = async () => {
-      try {
-        const response = await api.post("auth/refresh");
-        setAccessToken(response.data.access_token);
-      } catch (error) {
-        setUser(null);
-      }
-    };
-
     fetchAccessToken();
     fetchMe();
   }, []);
@@ -47,9 +51,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useLayoutEffect(() => {
     const authInterceptor = api.interceptors.request.use((config) => {
       config.headers.Authorization =
-        !isRetry && accessToken
-          ? `Bearer ${accessToken}`
-          : config.headers.Authorization;
+        accessToken ? `Bearer ${accessToken}` : config.headers.Authorization;
       return config;
     });
 
@@ -64,28 +66,32 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       async (error) => {
         const originalRequest = error.config;
 
-        if (error.response.status === 401) {
+        if (error.response.status === 403 && !isRetry) {
+          setIsRetry(true);
+
           try {
-            const response = await api.get("auth/refresh");
+            await fetchAccessToken();
 
-            setAccessToken(response.data.access_token);
-
-            originalRequest.headers.Authorization = `Bearer ${response.data.access_token}`;
-
-            return api(originalRequest);
+            if (accessToken) { 
+              originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+              return api(originalRequest);
+            }
           } catch (error) {
             setAccessToken(null);
             setUser(null);
+          } finally {
             setIsRetry(false);
           }
         }
+
+        return Promise.reject(error);
       }
     );
 
     return () => {
       api.interceptors.response.eject(refreshInterceptor);
     };
-  });
+  }, [isRetry, accessToken]);
 
   return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
 };
