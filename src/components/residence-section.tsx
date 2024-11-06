@@ -31,10 +31,10 @@ const ResidenceSection = ({
             </h1>
             <div className="flex gap-[3px]">
               {[...Array(residence.comfort)].map((_, index) => (
-                <div className="h-3 w-3 bg-primary-foreground border-[3px] border-primary rounded-full"></div>
+                <div key={index} className="h-3 w-3 bg-primary-foreground border-[3px] border-primary rounded-full"></div>
               ))}
               {[...Array(5 - residence.comfort)].map((_, index) => (
-                <div className="h-3 w-3 bg-primary rounded-full"></div>
+                <div key={residence.comfort+index} className="h-3 w-3 bg-primary rounded-full"></div>
               ))}
             </div>
           </div>
