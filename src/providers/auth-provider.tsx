@@ -36,6 +36,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         withCredentials: true,
       });
       setAccessToken(response.data.access_token);
+      console.log(accessToken);
       setIsRetry(false);
     } catch (error) {
       setAccessToken(null);
@@ -44,14 +45,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   useEffect(() => {
-    fetchAccessToken();
-    fetchMe();
+    async () => {
+      await fetchAccessToken();
+      await fetchMe();
+    };
   }, []);
 
   useLayoutEffect(() => {
     const authInterceptor = api.interceptors.request.use((config) => {
-      config.headers.Authorization =
-        accessToken ? `Bearer ${accessToken}` : config.headers.Authorization;
+      config.headers.Authorization = accessToken
+        ? `Bearer ${accessToken}`
+        : config.headers.Authorization;
       return config;
     });
 
@@ -72,7 +76,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           try {
             await fetchAccessToken();
 
-            if (accessToken) { 
+            if (accessToken) {
               originalRequest.headers.Authorization = `Bearer ${accessToken}`;
               return api(originalRequest);
             }
