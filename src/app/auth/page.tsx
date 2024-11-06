@@ -1,10 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import logo from "../../../public/logo.svg";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/tabs";
 import LoginSection from "./login-section";
 import RegisterSection from "./register-section";
+import { useSearchParams } from "next/navigation";
 
 const AuthPage = () => {
+  const searchParams = useSearchParams();
+
+  const initial = searchParams.get("initial");
+
   return (
     <main className="block md:grid grid-flow-col grid-cols-2 h-full w-full">
       <section className="h-full w-full bg-primary hidden md:flex justify-center items-center">
@@ -13,7 +20,10 @@ const AuthPage = () => {
         </div>
       </section>
       <section className="bg-card h-full w-full flex">
-        <Tabs className="m-auto w-[400px]" defaultValue="login">
+        <Tabs
+          className="m-auto w-[400px]"
+          defaultValue={!initial ? "login" : initial}
+        >
           <TabsList className="w-full bg-card justify-start mb-4">
             <TabsTrigger
               value="login"

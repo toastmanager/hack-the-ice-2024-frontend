@@ -1,4 +1,4 @@
-import ProfileCard from "@/components/profile-card";
+import ProfileCard from "@/components/profile-card/profile-card";
 import api from "@/lib/api-client";
 import ToursScreen from "./tours-screen";
 
@@ -6,12 +6,10 @@ const UserPage = async ({ params }: { params: { uuid: string } }) => {
   const { uuid } = await params;
   const user = (await api.get(`users/${uuid}`)).data;
 
-  console.log(user);
-
   const userInfo: ProfileEntity = {
     id: uuid,
     fullname: user.fullname,
-    isVerified: true,
+    isVerified: user.is_verified,
     score: 4.6,
     avatarUrl: user.avatar_url,
     bannerUrl: user.banner_url,

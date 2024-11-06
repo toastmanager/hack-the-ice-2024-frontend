@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import ProfileActionButtons from "./profile-action-buttons";
 
 const ProfileCard = ({ profileEntity }: { profileEntity: ProfileEntity }) => {
   return (
@@ -22,10 +22,12 @@ const ProfileCard = ({ profileEntity }: { profileEntity: ProfileEntity }) => {
           <div className="flex">
             <h1 className="flex items-center text-2xl gap-2">
               <span>{profileEntity.fullname}</span>
-              <Icon
-                icon="mage:check-circle-fill"
-                className="w-5 text-primary"
-              />
+              {profileEntity.isVerified && (
+                <Icon
+                  icon="mage:check-circle-fill"
+                  className="w-5 text-primary"
+                />
+              )}
             </h1>
           </div>
 
@@ -59,22 +61,7 @@ const ProfileCard = ({ profileEntity }: { profileEntity: ProfileEntity }) => {
             </div>
           </div>
         </div>
-
-        <div className="flex flex-col mt-5 md:mt-0 gap-1">
-          {/* FIXME: make available only if profile id is current user id */}
-          <Button
-            variant="outline"
-            className="w-48 bg-card hover:bg-card border-primary text-primary"
-          >
-            Редактировать
-          </Button>
-          <Button
-            variant="outline"
-            className="w-48 bg-primary text-primary-foreground hover:bg-primary hover:opacity-85 hover:text-primary-foreground"
-          >
-            Создать тур
-          </Button>
-        </div>
+        <ProfileActionButtons profileId={profileEntity.id} />
       </div>
     </div>
   );
