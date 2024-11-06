@@ -71,8 +71,8 @@ const ResidenceSection = ({
 
       <ul className="mt-3">
         <li>
-          {residence.items.map((item) => (
-            <TourSectionItem item={item} />
+          {residence.items.map((item, index) => (
+            <TourSectionItem item={item} key={index}/>
           ))}
         </li>
       </ul>
