@@ -25,7 +25,7 @@ const TourScheduleItem = ({ schedule }: { schedule: ScheduleEntity }) => {
 
   return (
     <div className="flex gap-x-16 gap-y-4 flex-wrap md:flex-nowrap">
-      <div className="min-w-32 py-3 border-2 rounded-full text-nowrap h-min flex justify-center">
+      <div className="min-w-32 py-3 border-2 rounded-full text-nowrap font-semibold h-min flex justify-center">
         <span>День {schedule.day}</span>
       </div>
       <div>
@@ -55,7 +55,7 @@ const TourScheduleItem = ({ schedule }: { schedule: ScheduleEntity }) => {
         {isOverflowed && (
           <button
             onClick={toggleShowFullText}
-            className="text-blue-500 underline mt-2"
+            className="text-primary font-medium mt-2"
           >
             {isTextHidden ? "Развернуть описание" : "Свернуть"}
           </button>
