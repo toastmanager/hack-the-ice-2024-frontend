@@ -8,7 +8,7 @@ const TourFeatures = ({ tourfeat }: { tourfeat: TourFeaturesEntity }) => {
         const activityLevelText = getLevelText(score);
 
         return (
-            <div className="flex flex-col">
+            <div className="flex space-x-4">
                 <span className="text-foreground-alternative">{activityLevelText}</span>
                 <div className="flex items-center">
                     {renderIcons(score)}
