@@ -1,6 +1,6 @@
-interface ResidenceCardEntity {
-    comfortDescription: string;
-    motelDuration: string;
-    hotelDuration: string;
-  }
-  
+interface ResidenceSectionEntity {
+  comfort: number;
+  motelDuration: string;
+  hotelDuration: string;
+  items: TourSectionItemEntity[];
+}
