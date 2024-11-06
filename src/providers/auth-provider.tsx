@@ -1,9 +1,20 @@
 "use client";
 
 import api from "@/lib/api-client";
-import { createContext, useEffect, useLayoutEffect, useState } from "react";
+import {
+  createContext,
+  useEffect,
+  useLayoutEffect,
+  useState,
+  useContext,
+} from "react";
 
 const AuthContext = createContext<UserEntity | null>(null);
+
+export const useAuth = () => {
+  const authContext = useContext(AuthContext);
+  return authContext;
+};
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<UserEntity | null>(null);
