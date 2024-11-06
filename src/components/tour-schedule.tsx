@@ -4,19 +4,19 @@ import { twMerge } from "tailwind-merge";
 const TourScheduleItem = ({ schedule }: { schedule: ScheduleEntity }) => {
   const textRef = useRef(null);
   const [isOverflowed, setIsOverflowed] = useState(false);
-  const [isTextHidden, setIsTextHidden] = useState(true); // Initially hide text
+  const [isTextHidden, setIsTextHidden] = useState(true);
 
   useEffect(() => {
-    window.addEventListener(
-      "resize",
-      () => {
-        if (textRef.current) {
-          const { scrollHeight, clientHeight } = textRef.current;
-          setIsOverflowed(scrollHeight > clientHeight);
-        }
-      },
-      false
-    );
+    const checkOverflow = () => {
+      if (textRef.current) {
+        const { scrollHeight, clientHeight } = textRef.current;
+        setIsOverflowed(scrollHeight > clientHeight);
+      }
+    };
+
+    checkOverflow();
+
+    window.addEventListener("resize", () => checkOverflow(), false);
   }, []);
 
   const toggleShowFullText = () => {
@@ -32,10 +32,10 @@ const TourScheduleItem = ({ schedule }: { schedule: ScheduleEntity }) => {
         <h1 className="mb-4 text-xl font-bold">{schedule.title}</h1>
 
         <div className="flex flex-wrap gap-x-4 gap-y-3 w-full">
-          {[...Array(3)].map((_, index) => (
+          {schedule.imagesUrls.slice(0, 3).map((_, index) => (
             <img
               key={index}
-              src={schedule.imageUrl}
+              src={schedule.imagesUrls[index]}
               alt={`Image ${index + 1}`}
               className="w-36 rounded-md"
             />

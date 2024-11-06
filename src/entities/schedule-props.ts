@@ -1,7 +1,7 @@
 interface ScheduleEntity {
     day: string;
     title: string;
-    imageUrl: string;
+    imagesUrls: string[];
     description:string;
   }
   
