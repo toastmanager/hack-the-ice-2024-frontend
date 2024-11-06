@@ -24,32 +24,45 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const fetchMe = async () => {
     try {
       const response = await api.post("auth/me", accessToken);
+      console.log(response.data);
       setUser(response.data);
     } catch (error) {
+      console.log(error);
       setUser(null);
     }
   };
 
   const fetchAccessToken = async () => {
-    try {
-      const response = await api.post("auth/refresh", undefined, {
-        withCredentials: true,
-      });
+    const fetch = async () => {
+      try {
+        return await api.post("auth/refresh", undefined, {
+          withCredentials: true,
+        });
+      } catch (error) {
+        console.log(error);
+        return null;
+      }
+    };
+
+    const response = await fetch();
+    if (response) {
       setAccessToken(response.data.access_token);
-      console.log(accessToken);
       setIsRetry(false);
-    } catch (error) {
+    } else {
       setAccessToken(null);
       setUser(null);
     }
   };
 
   useEffect(() => {
-    async () => {
-      await fetchAccessToken();
-      await fetchMe();
-    };
+    fetchAccessToken();
   }, []);
+
+  useEffect(() => {
+    if (accessToken) {
+      fetchMe();
+    }
+  }, [accessToken]);
 
   useLayoutEffect(() => {
     const authInterceptor = api.interceptors.request.use((config) => {
