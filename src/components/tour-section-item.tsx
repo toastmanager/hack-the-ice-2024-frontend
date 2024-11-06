@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-const TourScheduleItem = ({ schedule }: { schedule: ScheduleEntity }) => {
+const TourScheduleItem = ({ schedule }: { schedule: TourSectionItemEntity }) => {
   const textRef = useRef(null);
   const [isOverflowed, setIsOverflowed] = useState(false);
   const [isTextHidden, setIsTextHidden] = useState(true);

@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import TourScheduleItem from './tour-schedule-item';
+import TourScheduleItem from './tour-section-item';
 
 const meta = {
   component: TourScheduleItem,
-  title: 'Tour Schedule Item'
+  title: 'Tour Section Item'
 } satisfies Meta<typeof TourScheduleItem>;
 
 export default meta;
