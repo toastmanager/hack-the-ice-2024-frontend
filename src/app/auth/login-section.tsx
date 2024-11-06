@@ -14,6 +14,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import api from "@/lib/api-client";
+import { useAuth } from "@/providers/auth-provider";
+import { useToast } from "@/hooks/use-toast";
 
 const loginFormSchema = z.object({
   email: z.string().email(),
@@ -22,6 +25,9 @@ const loginFormSchema = z.object({
 });
 
 const LoginSection = () => {
+  const currentUser = useAuth();
+  const { toast } = useToast();
+
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -31,8 +37,24 @@ const LoginSection = () => {
     },
   });
 
-  const handleSubmit = (values: z.infer<typeof loginFormSchema>) => {
-    console.log(values);
+  const handleSubmit = async (values: z.infer<typeof loginFormSchema>) => {
+    try {
+      if (currentUser) {
+        await api.post("auth/logout", undefined, {
+          withCredentials: true,
+        });
+      }
+      await api.post("auth/login", values, {
+        withCredentials: true,
+      });
+      window.location.href = "/";
+    } catch (error: any) {
+      console.error(error);
+      toast({
+        title: "Ошибка",
+        description: error.message,
+      })
+    }
   };
 
   return (

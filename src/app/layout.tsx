@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import AppBar from "@/components/appbar";
+import { AuthProvider } from "@/providers/auth-provider";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
@@ -18,7 +19,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body className={`h-full ${inter.className} antialiased`}>
-        <div className="flex justify-center h-full w-full">{children}</div>
+        <AuthProvider>{children}</AuthProvider>
+        <Toaster />
       </body>
     </html>
   );

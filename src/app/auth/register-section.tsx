@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import api from "@/lib/api-client";
+import { useAuth } from "@/providers/auth-provider";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -39,7 +41,8 @@ const registerFormSchema = z
   .refine(
     (data) => {
       return (
-        (data.type === "author" && data.phone?.length === 12) || data.type === "tourist"
+        (data.type === "author" && data.phone?.length === 12) ||
+        data.type === "tourist"
       );
     },
     {
@@ -50,6 +53,8 @@ const registerFormSchema = z
 
 const RegisterSection = () => {
   const [userType, setUserType] = useState<"tourist" | "author">("tourist");
+  const currentUser = useAuth();
+
   const form = useForm<z.infer<typeof registerFormSchema>>({
     resolver: zodResolver(registerFormSchema),
     defaultValues: {
@@ -62,8 +67,20 @@ const RegisterSection = () => {
     },
   });
 
-  const handleSubmit = (values: z.infer<typeof registerFormSchema>) => {
-    console.log(values);
+  const handleSubmit = async (values: z.infer<typeof registerFormSchema>) => {
+    try {
+      if (currentUser) {
+        await api.post("auth/logout", undefined, {
+          withCredentials: true,
+        });
+      }
+      await api.post("auth/register", values, {
+        withCredentials: true,
+      });
+      window.location.href = "/";
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -168,7 +185,7 @@ const RegisterSection = () => {
               )}
             />
           </div>
-          {(userType === "author" || form.getValues('phone')) && (
+          {(userType === "author" || form.getValues("phone")) && (
             <FormField
               control={form.control}
               name="phone"
@@ -176,7 +193,12 @@ const RegisterSection = () => {
                 <FormItem>
                   <FormLabel>Номер телефона</FormLabel>
                   <FormControl>
-                    <Input placeholder="+71234567890" className="bg-background" type="tel" {...field} />
+                    <Input
+                      placeholder="+71234567890"
+                      className="bg-background"
+                      type="tel"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

@@ -1,7 +1,6 @@
 interface ReviewEntity {
-    imageUrl: string; // FIXME: Set user entity
-    UserName: string;
-    date: string;
+    user: UserEntity;
+    date: Date;
     text: string;
     score: number;
   }

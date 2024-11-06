@@ -1,4 +1,4 @@
-interface ProfileCardEntity extends UserEntity {
+interface ProfileEntity extends UserEntity {
   score: number;
   toursConductedNumber: number;
   toursPublishedNumber: number;
