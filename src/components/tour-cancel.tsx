@@ -12,10 +12,10 @@ const TourCancel = () => {
   };
 
   return (
-    <div className="bg-card text-card-foreground w-2/3 rounded-3xl py-6 px-4">
+    <div className="bg-card text-card-foreground w-2/3 rounded-3xl py-6 px-4 space-y-4">
     <span className="text-2xl font-semibold">Условия отмены</span>
     <div
-      className={`bg-[#F2F2F2] w-full px-4 rounded-md ${getBorderClass(1)}`} /* border changes div?? */
+      className={`bg-[#F2F2F2] w-full px-4 rounded-md border ${getBorderClass(1)}`} /* border changes div?? */
       onClick={() => handleDivClick(1)}
     >
       <div className="flex items-center mt-4">
@@ -37,7 +37,7 @@ const TourCancel = () => {
       </div>
     </div>
     <div
-      className={`bg-[#F2F2F2] w-full px-4 rounded-md ${getBorderClass(2)}`}
+      className={`bg-[#F2F2F2] w-full px-4 rounded-md border ${getBorderClass(2)}`}
       onClick={() => handleDivClick(2)}
     >
       <div className="flex items-center mt-4">
@@ -59,7 +59,7 @@ const TourCancel = () => {
       </div>
     </div>
     <div
-      className={`bg-[#F2F2F2] w-full px-4 rounded-md ${getBorderClass(3)}`}
+      className={`bg-[#F2F2F2] w-full px-4 rounded-md border ${getBorderClass(3)}`}
       onClick={() => handleDivClick(3)}
     >
       <div className="flex items-center mt-4">
@@ -81,7 +81,7 @@ const TourCancel = () => {
       </div>
     </div>
     <div
-      className={`bg-[#F2F2F2] w-full px-4 rounded-md ${getBorderClass(4)}`}
+      className={`bg-[#F2F2F2] w-full px-4 rounded-md border ${getBorderClass(4)}`}
       onClick={() => handleDivClick(4)}
     >
       <div className="flex items-center mt-4">
