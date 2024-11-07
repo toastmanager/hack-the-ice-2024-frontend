@@ -13,8 +13,8 @@ const TourCreatePage = () => {
   const [step, setStep] = useState(1);
 
   return (
-    <div className="h-full w-full flex justify-center px-3">
-      <main className="max-w-[1200px] w-full mt-5 space-y-5">
+    <div className="min-h-full w-full flex justify-center px-3">
+      <main className="max-w-[1200px] w-full h-full mt-5 mb-60 space-y-5">
         <span className="text-2xl font-semibold">Создание тура</span>
         <StepsBar step={step} />
         {step === 1 && <TourMainDataFormScreen />}

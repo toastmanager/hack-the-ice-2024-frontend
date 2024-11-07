@@ -1,8 +1,10 @@
 import TourImages from "@/components/imagedropper";
 import TourButton from "@/components/tour-button";
+import TourMainInfoInputs from "@/components/tour-info";
 
 const TourMainDataFormScreen = () => {
   return <>
+    <TourMainInfoInputs />
     <TourImages />
     <TourButton tourbutton={{
       title: 'Отзывы о туре',
