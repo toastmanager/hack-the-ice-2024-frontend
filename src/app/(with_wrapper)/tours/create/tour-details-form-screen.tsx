@@ -1,5 +1,11 @@
+import TourDescriptionInput from "@/components/tour-description-input";
+
 const TourDetailsFormScreen = () => {
-  return <>Tour details</>;
+  return (
+    <>
+      <TourDescriptionInput />
+    </>
+  );
 };
 
 export default TourDetailsFormScreen;
