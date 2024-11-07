@@ -1,33 +1,31 @@
-import { Icon } from "@iconify/react";
-import { Input } from "@/components/ui/input"
+import { Input } from "@/components/ui/input";
 
-const JourneyInput = () => {
+const TourStartEndInput = () => {
   return (
-    <div className="bg-card text-card-foreground w-2/3 rounded-3xl py-6 px-4">
-    <div>
-        <span className="text-2xl font-semibold ">Основная информация</span>
+    <div className="bg-card text-card-foreground w-full rounded-3xl p-5">
+      <div>
+        <span className="text-2xl font-semibold">Начало тура</span>
         <div className="space-y-3 pt-4">
-            <Input type="bebra" placeholder="Название тура" />
-        <div className="flex gap-2">
-            <Input type="bebra" placeholder="Тип тура" className="w-2/3" />
-            <Input type="bebra" placeholder="Дополнительные типы тура" className="w-1/3" />
+          <Input placeholder="Название тура" className="bg-card"/>
+          <div className="flex gap-2">
+            <Input placeholder="Тип тура" className="w-2/3 bg-card" />
+            <Input placeholder="Дополнительные типы тура" className="w-1/3 bg-card" />
+          </div>
         </div>
-    </div>
-     
-     <div className="pt-3">
-        <span className="text-2xl font-semibold ">Финиш</span>
-        <div className="space-y-3 pt-4">
-            <Input type="bebra" placeholder="Название тура" />
+
+        <div className="pt-3">
+          <span className="text-2xl font-semibold ">Конец тура</span>
+          <div className="space-y-3 pt-4">
+            <Input placeholder="Название тура" className="bg-card"/>
             <div className="flex gap-2">
-                <Input type="bebra" placeholder="Тип тура" className="w-2/3" />
-                <Input type="bebra" placeholder="Дополнительные типы тура" className="w-1/3" />
+              <Input placeholder="Тип тура" className="w-2/3 bg-card" />
+              <Input placeholder="Дополнительные типы тура" className="w-1/3 bg-card" />
             </div>
+          </div>
         </div>
-     </div>
-     
-    </div>
+      </div>
     </div>
   );
 };
 
-export default JourneyInput;
+export default TourStartEndInput;

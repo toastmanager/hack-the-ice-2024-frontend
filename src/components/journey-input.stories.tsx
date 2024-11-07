@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import JourneyInput from './journey-input';
+import TourStartEndInput from './journey-input';
 
 const meta = {
-  component: JourneyInput,
+  component: TourStartEndInput,
   title: 'Journey-start-end Input'
-} satisfies Meta<typeof JourneyInput>;
+} satisfies Meta<typeof TourStartEndInput>;
 
 export default meta;
 
