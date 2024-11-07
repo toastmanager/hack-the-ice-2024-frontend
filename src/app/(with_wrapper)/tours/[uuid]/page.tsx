@@ -3,33 +3,53 @@ import ResidenceSection from "@/components/residence-section";
 import TourFeatures from "@/components/tour-features";
 import TourReviewsSection from "@/components/tour-reviews-section";
 import TourScheduleSection from "@/components/tour-schedule-section";
+import api from "@/lib/api-client";
+import { twMerge } from "tailwind-merge";
 
 const TourDetailsPage = async ({ params }: { params: { uuid: string } }) => {
   const { uuid } = await params;
+  const review = (await api.get(`tours/${uuid}`)).data;
 
-  const reviews: ReviewEntity[] = Array.from({ length: 14}, (_, index) => {
-    const review: ReviewEntity = {
-      date: new Date(),
-      score: 4,
-      text: "Отличный тур!!!",
-      user: {
-        id: index.toString(),
-        fullname: "Дронова Наталья Петровна",
-        isVerified: false,
-        avatarUrl: "",
-        bannerUrl: "",
-      },
-    };
+  console.log(review);
 
-    return review;
-  });
+  const examleReviews: ReviewEntity[] = Array.from(
+    { length: 14 },
+    (_, index) => {
+      const review: ReviewEntity = {
+        date: new Date(),
+        score: 4,
+        text: "Отличный тур!!!",
+        user: {
+          id: index.toString(),
+          fullname: "Дронова Наталья Петровна",
+          isVerified: false,
+          avatarUrl: "",
+          bannerUrl: "",
+        },
+      };
 
-  console.log(reviews);
+      return review;
+    }
+  );
 
   return (
     <div className="min-h-full flex justify-center">
       <main className="max-w-[1200px] w-full mt-5 mb-10">
-        <div className="bg-card rounded-2xl w-full h-[812px]"></div>
+        <div className="bg-card rounded-2xl w-full p-5">
+          <span className="text-4xl font-semibold">{review.title}</span>
+          <div className="mt-5 grid grid-cols-auto-fit-240 w-full gap-2 grid-rows-auto-fit-240">
+            {review.image_urls.map((imageUrl: string, index: number) => (
+              <img
+                key={index}
+                src={imageUrl}
+                className={twMerge(
+                  "object-cover h-full w-full rounded-2xl",
+                  index === 0 ? "md:row-span-2 md:col-span-1 lg:col-span-2" : ""
+                )}
+              ></img>
+            ))}
+          </div>
+        </div>
         <div className="flex flex-wrap-reverse w-full justify-between mt-2">
           <div className="w-[840px] space-y-2">
             <TourFeatures
@@ -58,7 +78,7 @@ const TourDetailsPage = async ({ params }: { params: { uuid: string } }) => {
                 ],
               }}
             />
-            <TourReviewsSection reviews={reviews} />
+            <TourReviewsSection reviews={examleReviews} />
             <AuthorContact
               authorcontact={{
                 authorName: "Егорова Валентина",
