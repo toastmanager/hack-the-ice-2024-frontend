@@ -5,7 +5,17 @@ const StepsBar = ({ step }: { step: number }) => {
     <div
       className={twMerge(
         `w-full h-12 bg-card rounded-lg bg-gradient-to-r from-primary to-card p-[2px]`,
-        `to-${step * 20}%`
+        step * 20 === 20
+          ? "to-20%"
+          : step * 20 === 40
+          ? "to-40%"
+          : step * 20 === 60
+          ? "to-60%"
+          : step * 20 === 80
+          ? "to-80%"
+          : step * 20 === 100
+          ? "to-80%"
+          : ""
       )}
     >
       <div className="w-full h-full bg-card rounded-md flex items-center px-3">
