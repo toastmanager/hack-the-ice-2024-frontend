@@ -1,4 +1,0 @@
-interface StepBarEntity {
-    step: number;
-  }
-  
