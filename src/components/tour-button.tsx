@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 const TourButton = ({ tourbutton }: { tourbutton: TourButtonEntity }) => {
   return (
-    <div className="bg-card text-card-foreground w-full rounded-3xl p-6">
+    <div className="bg-card text-card-foreground w-full rounded-3xl p-5">
       <div className="space-y-6">
         <span className="block text-3xl font-semibold mb-2">
           {tourbutton.title}
