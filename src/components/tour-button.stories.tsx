@@ -12,7 +12,7 @@ export const Default: Story = {
     tourbutton: {
         'title': 'Впечатления',
         'description': 'Опишите основные впечатления (или места), которые ждут путешественников',
-        'btnDescription': 'Добавить'
+        'btnText': 'Добавить'
     },
   },
 };
@@ -22,7 +22,7 @@ export const  ImportantInfo: Story = {
     tourbutton: {
       'title': 'Важная информация о туре',
         'description': 'Все вопросы попадут в блок “Важно”. Отметьте нужные вопросы и заполните поле с текстом или создайте свой вариант вопроса.',
-        'btnDescription': 'Добавить вопрос'
+        'btnText': 'Добавить вопрос'
     }
   }
 };
@@ -31,7 +31,7 @@ export const Review: Story = {
       tourbutton: {
         'title': 'Отзывы о туре',
           'description': 'Если у вас есть отзывы в других сервисах, пожалуйста, напишите их тут',
-          'btnDescription': 'Добавить отзыв'
+          'btnText': 'Добавить отзыв'
       }
     }
   };
