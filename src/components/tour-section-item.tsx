@@ -34,10 +34,10 @@ const TourSectionItem = ({ item: schedule }: { item: TourSectionItemEntity }) =>
         <h1 className="mb-4 text-xl font-semibold">{schedule.title}</h1>
 
         <div className="flex flex-wrap gap-x-4 gap-y-3 w-full">
-          {schedule.imagesUrls.slice(0, 3).map((_, index) => (
+          {schedule.image_urls.slice(0, 3).map((_, index) => (
             <img
               key={index}
-              src={schedule.imagesUrls[index]}
+              src={schedule.image_urls[index]}
               alt={`Image ${index + 1}`}
               className="w-36 rounded-md"
             />

@@ -1,8 +1,8 @@
 interface TourFeaturesEntity {  
     scoreActivity: number;
     scoreComfort: number;
-    gapGroup: number;
+    ageGroup: number;
     tourDuration: number;
-    languageSupport: string;
+    supportedLanguages: string;
   }
   

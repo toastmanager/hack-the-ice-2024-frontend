@@ -1,6 +1,6 @@
 interface ResidenceSectionEntity {
   comfort: number;
-  motelDuration: string;
-  hotelDuration: string;
-  items: TourSectionItemEntity[];
+  motel_duration: string;
+  hotel_duration: string;
+  recidencies: TourSectionItemEntity[];
 }

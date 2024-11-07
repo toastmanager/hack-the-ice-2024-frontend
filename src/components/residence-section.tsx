@@ -48,7 +48,7 @@ const ResidenceSection = ({
             <div className="space-y-1">
               <h1 className="text-sm font-medium">Гостиница</h1>
               <h1 className="text-xs text-foreground-alternative font-medium">
-                {residence.motelDuration}
+                {residence.motel_duration}
               </h1>
             </div>
           </div>
@@ -62,7 +62,7 @@ const ResidenceSection = ({
             <div className="space-y-1">
               <h1 className="text-sm font-medium">Отель</h1>
               <h1 className="text-xs text-foreground-alternative font-medium">
-                {residence.hotelDuration}
+                {residence.hotel_duration}
               </h1>
             </div>
           </div>
@@ -71,7 +71,7 @@ const ResidenceSection = ({
 
       <ul className="mt-3">
         <li>
-          {residence.items.map((item, index) => (
+          {residence.recidencies.map((item, index) => (
             <TourSectionItem item={item} key={index}/>
           ))}
         </li>

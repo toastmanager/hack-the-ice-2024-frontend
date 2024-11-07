@@ -16,9 +16,9 @@ export const Default: Story = {
     tourfeat: {
       "scoreActivity": 1,
       "scoreComfort": 4,
-      "gapGroup": 12,
+      "ageGroup": 12,
       "tourDuration": 12,
-      "languageSupport": "Русский, Английский"
+      "supportedLanguages": "Русский, Английский"
     
 
     }

@@ -16,7 +16,7 @@ export const Default: Story = {
     item: {
       duration: "1 день",
       title: "Знакомство с беброй",
-      imagesUrls: [
+      image_urls: [
         "https://variety.com/wp-content/uploads/2024/01/GettyImages-1849594759-e1704908885262.jpg?w=1024",
         "https://variety.com/wp-content/uploads/2024/01/GettyImages-1849594759-e1704908885262.jpg?w=1024",
         "https://variety.com/wp-content/uploads/2024/01/GettyImages-1849594759-e1704908885262.jpg?w=1024",
@@ -32,7 +32,7 @@ export const WithShortDescription: Story = {
     item: {
       duration: "2-4 день",
       title: "Листвянка и Большой Байкальский круговорот",
-      imagesUrls: [
+      image_urls: [
         "https://variety.com/wp-content/uploads/2024/01/GettyImages-1849594759-e1704908885262.jpg?w=1024",
         "https://variety.com/wp-content/uploads/2024/01/GettyImages-1849594759-e1704908885262.jpg?w=1024",
         "https://variety.com/wp-content/uploads/2024/01/GettyImages-1849594759-e1704908885262.jpg?w=1024",
@@ -48,7 +48,7 @@ export const WithOneImage: Story = {
     item: {
       duration: "6 ночей",
       title: "Irkuts city center",
-      imagesUrls: [
+      image_urls: [
         "https://variety.com/wp-content/uploads/2024/01/GettyImages-1849594759-e1704908885262.jpg?w=1024",
       ],
       description:
