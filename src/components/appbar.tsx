@@ -47,11 +47,10 @@ const AppBar = () => {
           <Link href="/">
             <Image alt="Logo" src={logo} />
           </Link>
-          <Input placeholder="Поиск" className="w-60 bg-accent" />
+          {/* <Input placeholder="Поиск" className="w-60 bg-accent" /> */}
           <div className="flex gap-5">
-            <Link href={"#"}>Все путешествия</Link>
-            <Link href={"#"}>Подборки туров</Link>
-            <Link href={"#"}>Владельцам туров</Link>
+            <Link href={"/"}>Поиск туров</Link>
+            <Link href={user ? "/tours/create" : "/auth"}>Создать тур</Link>
           </div>
         </div>
         <div className="flex items-center gap-3">
