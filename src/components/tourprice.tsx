@@ -8,15 +8,14 @@ const TourPrice = () => {
 
       <div className="space-y-4 pt-4">
         <span className="">
-          При выборе основной валюты тура, окончательная цена поездки будет
-          пересчитываться в рублях по актуальному курсу валют на момент покупки.
+        Введите стоимость в рублях
         </span>
         <div className="grid w-full items-center gap-2">
           <Label htmlFor="email">Итоговая стоимость</Label>
           <Input
             type="email"
             id="email"
-            placeholder="Введите стоимость в рублях"
+            placeholder="50000"
           />
         </div>
       </div>
