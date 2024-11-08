@@ -2,7 +2,9 @@ import { Icon } from "@iconify/react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-const TourDescriptionInput = () => {
+import { UseFormReturn } from "react-hook-form";
+
+const TourDescriptionInput = ({ form }: { form: UseFormReturn }) => {
   return (
     <div className="bg-card text-card-foreground w-full rounded-3xl p-5">
       <div>

@@ -10,17 +10,38 @@ import TourCancelConditionScreen from "./tour-cancel-conditions-form-screen";
 import TourPriceFormScreen from "./tour-price-form-screen";
 import { useForm } from "react-hook-form";
 import { Form } from "@/components/ui/form";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import api from "@/lib/api-client";
+import { toast } from "@/hooks/use-toast";
+import { twMerge } from "tailwind-merge";
 
 const TourCreatePage = () => {
   const [step, setStep] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   const form = useForm();
 
-  const handleSubmit = (values: any) => {
-    console.log(values)
+  const handleSubmit = async (values: any) => {
+    console.log(values);
+
+    try {
+      const response = await (await api.get("tours")).data;
+      console.log(response);
+    } catch (error: any) {
+      console.error(error);
+      toast({
+        title: "Ошибка",
+        description: error.message,
+      });
+    }
+
+    setIsLoading(false);
   };
 
   const handleNextStep = () => {
-    if (step <= 5) {
+    if (step === 5) {
+      setIsLoading(true);
+    }
+    if (step < 6) {
       setStep(step + 1);
     }
   };
@@ -31,7 +52,10 @@ const TourCreatePage = () => {
         <span className="text-2xl font-semibold">Создание тура</span>
         <StepsBar step={step} />
         <Form {...form}>
-          <form className="space-y-5" onSubmit={form.handleSubmit(handleSubmit)}>
+          <form
+            className="space-y-5"
+            onSubmit={form.handleSubmit(handleSubmit)}
+          >
             {step === 1 && (
               <TourMainDataFormScreen form={form} className="space-y-5" />
             )}
@@ -47,8 +71,36 @@ const TourCreatePage = () => {
             {step === 5 && (
               <TourPriceFormScreen form={form} className="space-y-5" />
             )}
+            {step === 6 && (
+              <>
+                <div className="bg-card p-5 rounded-2xl w-full text-center">
+                  {isLoading ? (
+                    <>
+                      <Icon
+                        icon={"lineicons:spinner-2-sacle"}
+                        className="animate-spin mx-auto w-12 h-12 mb-5 text-primary"
+                      />
+                      <span>Ожидайте, ваш тур отправляется на модерацию</span>
+                    </>
+                  ) : (
+                    <>
+                      <Icon
+                        icon={"check-circle-fill"}
+                        className="mx-auto w-12 h-12 mb-5 text-primary"
+                      />
+                      <span>Ваш тур успешно отправлен на модерацию!</span>
+                    </>
+                  )}
+                </div>
+                {!isLoading && (
+                  <Button className="w-full" onClick={() => (window.location.href = "/")}>
+                    Перейти в главное меню
+                  </Button>
+                )}
+              </>
+            )}
             <div className="flex gap-2">
-              {step > 1 && (
+              {step > 1 && step < 6 && (
                 <Button
                   className="w-full bg-card text-primary hover:bg-card"
                   variant="outline"
@@ -58,12 +110,21 @@ const TourCreatePage = () => {
                   Предыдущий шаг
                 </Button>
               )}
+              {step < 5 && (
+                <Button
+                  className="w-full"
+                  onClick={handleNextStep}
+                  type="button"
+                >
+                  Следующий шаг
+                </Button>
+              )}
               <Button
-                className="w-full"
+                className={twMerge("w-full", step === 5 ? "flex" : "hidden")}
                 onClick={handleNextStep}
-                type={step === 6 ? "submit" : "button"}
+                type="submit"
               >
-                Следующий шаг
+                Отправить
               </Button>
             </div>
           </form>

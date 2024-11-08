@@ -11,7 +11,7 @@ const TourDetailsFormScreen = ({
 }) => {
   return (
     <section className={className}>
-      <TourDescriptionInput />
+      <TourDescriptionInput form={form}/>
       <TourButton
         tourbutton={{
           title: "Впечатления",
