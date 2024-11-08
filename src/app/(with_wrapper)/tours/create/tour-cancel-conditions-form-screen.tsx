@@ -1,5 +1,11 @@
+import TourCancel from "@/components/tour-cancel";
+
 const TourCancelConditionScreen = () => {
-  return <>Tour cancel credentials</>;
+  return (
+    <>
+      <TourCancel />
+    </>
+  );
 };
 
 export default TourCancelConditionScreen;

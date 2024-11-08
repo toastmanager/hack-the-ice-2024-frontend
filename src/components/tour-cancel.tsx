@@ -12,7 +12,7 @@ const TourCancel = () => {
   };
 
   return (
-    <div className="bg-card text-card-foreground w-2/3 rounded-3xl py-6 px-4 space-y-4">
+    <div className="bg-card text-card-foreground w-full rounded-3xl p-5 space-y-4">
     <span className="text-2xl font-semibold">Условия отмены</span>
     <div
       className={`bg-[#F2F2F2] w-full px-4 rounded-md border ${getBorderClass(1)}`} /* border changes div?? */
