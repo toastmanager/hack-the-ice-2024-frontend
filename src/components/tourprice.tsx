@@ -16,7 +16,7 @@ const TourPrice = () => {
           <Input
             type="email"
             id="email"
-            placeholder="Введите стоимость в любой валюте"
+            placeholder="Введите стоимость в любой рублях"
           />
         </div>
       </div>
