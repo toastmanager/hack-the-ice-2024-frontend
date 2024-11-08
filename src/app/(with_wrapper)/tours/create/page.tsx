@@ -12,6 +12,12 @@ import TourPriceFormScreen from "./tour-price-form-screen";
 const TourCreatePage = () => {
   const [step, setStep] = useState(1);
 
+  const handleNextStep = () => {
+    if (step < 5) {
+      setStep(step+1)
+    }
+  }
+
   return (
     <div className="min-h-full w-full flex justify-center px-3">
       <main className="max-w-[1200px] w-full h-full mt-5 mb-60 space-y-5">
@@ -32,7 +38,7 @@ const TourCreatePage = () => {
               Предыдущий шаг
             </Button>
           )}
-          <Button className="w-full" onClick={() => setStep(step + 1)}>
+          <Button className="w-full" onClick={handleNextStep}>
             Следующий шаг
           </Button>
         </div>
