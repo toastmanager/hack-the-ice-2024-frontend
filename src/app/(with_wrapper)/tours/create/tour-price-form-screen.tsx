@@ -1,5 +1,9 @@
+import TourPrice from "@/components/tourprice";
+
 const TourPriceFormScreen = () => {
-  return <>Tour price form screen</>;
+  return <>
+    <TourPrice />
+  </>;
 };
 
 export default TourPriceFormScreen;
