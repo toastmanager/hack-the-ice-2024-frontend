@@ -15,13 +15,13 @@ export const Default: Story = {
   args: {
     residence: {
       comfort: 4,
-      motelDuration: "7 дней 6 ночи",
-      hotelDuration: "4 ночи",
-      items: [
+      motel_duration: "7 дней 6 ночи",
+      hotel_duration: "4 ночи",
+      recidencies: [
         {
           duration: "6 ночей",
           title: "Irkutsk city center",
-          imagesUrls: [
+          image_urls: [
             "https://broni.travel/public/sites/pages/5784/380139.jpeg",
           ],
           description:

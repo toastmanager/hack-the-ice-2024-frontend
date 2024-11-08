@@ -1,6 +1,6 @@
 interface TourSectionItemEntity {
-  duration: string;
   title: string;
-  imagesUrls: string[];
   description: string;
+  duration: string;
+  image_urls: string[];
 }
