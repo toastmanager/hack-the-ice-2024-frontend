@@ -1,5 +1,16 @@
+import RouteForm from "@/components/route-form";
+
 const TourRouteFormScreen = () => {
-  return <>Tour route form screen</>;
+  return <>
+    <RouteForm  routeform={{
+      countdown: '1',
+      description: '',
+      etapi: 'Этап маршрута',
+      routesCount: 1,
+      title: 'Заголовок этапа',
+      titleEtapi: 'Заголовок этапа'
+    }}/>
+  </>;
 };
 
 export default TourRouteFormScreen;
