@@ -10,7 +10,7 @@ const TourStartEndInput = ({ form }: { form: UseFormReturn }) => {
         <div className="space-y-3 pt-4">
           <FormField
             control={form.control}
-            name="start-city"
+            name="start_city"
             render={({ field }) => (
               <Input
                 placeholder="Название тура"
