@@ -11,7 +11,7 @@ const UserPage = async ({ params }: { params: { uuid: string } }) => {
     fullname: user.fullname,
     isVerified: user.is_verified,
     score: 4.6,
-    avatarUrl: user.avatar_url,
+    avatarImageKey: user.avatarImageKey,
     bannerUrl: user.banner_url,
     touristsGuidedNumber: 206,
     toursConductedNumber: 22,

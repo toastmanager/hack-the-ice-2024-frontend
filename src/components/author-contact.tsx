@@ -42,7 +42,7 @@ const AuthorContact = ({
 
       <Avatar className="w-28 h-28">
         <AvatarImage
-          src={authorContact.avatarUrl}
+          src={authorContact.avatarImageKey}
           alt="Avatar"
           className="object-cover object-left-top"
         />

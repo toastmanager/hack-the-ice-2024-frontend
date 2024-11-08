@@ -11,7 +11,7 @@ const ProfileCard = ({ profileEntity }: { profileEntity: ProfileEntity }) => {
       ></div>
 
       <Avatar className="absolute top-44 left-5 border-4 border-card w-[136px] h-[136px]">
-        <AvatarImage src={profileEntity.avatarUrl} className="object-cover" />
+        <AvatarImage src={profileEntity.avatarImageKey} className="object-cover bg-card" />
         <AvatarFallback className="bg-primary text-primary-foreground text-6xl font-medium">
           {profileEntity.fullname[0]}
         </AvatarFallback>

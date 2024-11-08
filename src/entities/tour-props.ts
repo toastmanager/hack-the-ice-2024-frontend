@@ -1,8 +1,9 @@
 interface TourEntity {
-  imageUrl: string;
+  uuid: string,
+  image_urls: string[];
   location: string;
   inBookmark?: boolean;
-  duration: string;
+  days_duration: string;
   title: string;
   price: number;
   previousPrice?: number;

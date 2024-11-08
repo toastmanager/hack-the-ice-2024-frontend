@@ -1,8 +1,22 @@
 import { Icon } from "@iconify/react";
+import Link from "next/link";
+import { twMerge } from "tailwind-merge";
 
-const TourCard = ({ tour }: { tour: TourEntity }) => {
+const TourCard = ({
+  tour,
+  className = "",
+}: {
+  tour: TourEntity;
+  className?: string;
+}) => {
   return (
-    <div className="bg-card text-card-foreground w-96 rounded-3xl">
+    <Link
+      href={`/tours/${tour.uuid}`}
+      className={twMerge(
+        "bg-card text-card-foreground w-96 rounded-3xl",
+        className
+      )}
+    >
       <div className="relative">
         <button className="absolute top-0 right-0 bg-card px-[11px] py-2 rounded-tr-[1.4rem] rounded-bl-lg">
           {tour.inBookmark ? (
@@ -13,7 +27,7 @@ const TourCard = ({ tour }: { tour: TourEntity }) => {
         </button>
         <img
           alt="image"
-          src={tour.imageUrl}
+          src={tour.image_urls[0]}
           className="rounded-t-3xl bg-gray-600 object-left-top object-cover w-96 h-44"
         />
         <div className="flex absolute bottom-0 w-full justify-between">
@@ -22,7 +36,7 @@ const TourCard = ({ tour }: { tour: TourEntity }) => {
             <span>{tour.location}</span>
           </div>
           <div className="bg-card px-3 rounded-tl-lg py-1">
-            <span>{tour.duration}</span>
+            <span>{tour.days_duration}</span>
           </div>
         </div>
       </div>
@@ -39,11 +53,11 @@ const TourCard = ({ tour }: { tour: TourEntity }) => {
           </div>
           <div className="flex items-center gap-1">
             <Icon icon="mage:star-fill" className="text-primary text-xl" />
-            <span className="text-xl font-semibold">{tour.score}</span>
+            <span className="text-xl font-semibold">{tour.score ?? "4.4"}</span>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

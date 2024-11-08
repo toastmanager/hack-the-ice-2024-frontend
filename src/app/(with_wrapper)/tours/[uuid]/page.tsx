@@ -23,7 +23,7 @@ const TourDetailsPage = async ({ params }: { params: { uuid: string } }) => {
           id: index.toString(),
           fullname: "Дронова Наталья Петровна",
           isVerified: false,
-          avatarUrl: "",
+          avatarImageKey: "",
           bannerUrl: "",
         },
       };
@@ -75,7 +75,7 @@ const TourDetailsPage = async ({ params }: { params: { uuid: string } }) => {
               authorcontact={{
                 authorName: tour.author.fullname,
                 isVerified: tour.author.is_verified,
-                avatarUrl: tour.author.avatar_url,
+                avatarImageKey: tour.author.avatarImageKey,
                 description: tour.author.description,
               }}
             />

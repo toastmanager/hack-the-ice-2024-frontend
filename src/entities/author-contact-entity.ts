@@ -1,6 +1,6 @@
 interface AuthorContactEntity {
     authorName: string;
-    avatarUrl: string;
+    avatarImageKey: string;
     isVerified: boolean;
     description: string;
   }

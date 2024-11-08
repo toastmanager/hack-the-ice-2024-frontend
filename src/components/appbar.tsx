@@ -96,7 +96,7 @@ const AppBar = () => {
                 <DropdownMenu>
                   <DropdownMenuTrigger>
                     <Avatar>
-                      <AvatarImage src={user.avatarUrl} />
+                      <AvatarImage src={user.avatarImageKey} />
                       <AvatarFallback className="bg-primary text-primary-foreground text-3xl font-medium">
                         {user.fullname[0]}
                       </AvatarFallback>

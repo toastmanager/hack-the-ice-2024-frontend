@@ -19,7 +19,7 @@ const TourReview = ({ review }: { review: ReviewEntity }) => {
       <div className="flex mb-3 items-center">
         <Avatar className="w-12 h-12">
           <AvatarImage
-            src={review.user.avatarUrl}
+            src={review.user.avatarImageKey}
             alt="Avatar"
             className="object-cover object-left-top"
           />
