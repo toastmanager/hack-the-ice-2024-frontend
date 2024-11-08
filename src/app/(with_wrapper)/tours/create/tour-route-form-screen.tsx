@@ -1,7 +1,14 @@
 import RouteForm from "@/components/route-form";
+import { UseFormReturn } from "react-hook-form";
 
-const TourRouteFormScreen = () => {
-  return <>
+const TourRouteFormScreen = ({
+  form,
+  className = "",
+}: {
+  form: UseFormReturn;
+  className?: string;
+}) => {
+  return <section className={className}>
     <RouteForm  routeform={{
       countdown: '1',
       description: '',
@@ -10,7 +17,7 @@ const TourRouteFormScreen = () => {
       title: 'Заголовок этапа',
       titleEtapi: 'Заголовок этапа'
     }}/>
-  </>;
+  </section>;
 };
 
 export default TourRouteFormScreen;

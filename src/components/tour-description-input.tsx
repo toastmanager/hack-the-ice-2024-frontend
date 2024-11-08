@@ -9,7 +9,7 @@ const TourDescriptionInput = () => {
         <span className="text-2xl font-semibold ">Описание тура</span>
       </div>
       <div className="space-y-3 pt-4">
-        <form className="">
+        <div className="">
           <label htmlFor="countries" className="block mb-2 text-sm font-medium">
             Классификация
           </label>
@@ -66,7 +66,7 @@ const TourDescriptionInput = () => {
               placeholder="Вставьте ссылку"
             />
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

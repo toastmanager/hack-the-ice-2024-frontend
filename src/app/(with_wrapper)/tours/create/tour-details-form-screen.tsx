@@ -1,9 +1,16 @@
 import TourButton from "@/components/tour-button";
 import TourDescriptionInput from "@/components/tour-description-input";
+import { UseFormReturn } from "react-hook-form";
 
-const TourDetailsFormScreen = () => {
+const TourDetailsFormScreen = ({
+  form,
+  className = "",
+}: {
+  form: UseFormReturn;
+  className?: string;
+}) => {
   return (
-    <>
+    <section className={className}>
       <TourDescriptionInput />
       <TourButton
         tourbutton={{
@@ -21,7 +28,7 @@ const TourDetailsFormScreen = () => {
           btnText: "Добавить вопрос",
         }}
       />
-    </>
+    </section>
   );
 };
 
