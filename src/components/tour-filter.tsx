@@ -17,10 +17,23 @@ import {
 
 const TourFilter = () => {
   const [date, setDate] = React.useState<Date>();
+  const [rating, setRating] = useState<number>(0);
+  const [filledStars, setFilledStars] = useState<number>(0);
   const [showAdditionalParams, setShowAdditionalParams] = React.useState(false);
+
 
   const toggleAdditionalParams = () => {
     setShowAdditionalParams(!showAdditionalParams);
+  };
+
+  const handleStarClick = (selectedRating: number) => {
+    if (selectedRating === filledStars) {
+      setFilledStars(0); 
+    } else {
+      setFilledStars(selectedRating);
+    }
+    setRating(selectedRating);
+
   };
 
   return (
@@ -113,18 +126,38 @@ const TourFilter = () => {
                       </div>
                   </div>
                   <div className="flex gap-4 py-2 relative col-span-2">
-                      <div className='w-full bg-white border rounded-md relative py-2 px-2'>
-                        <span className=''>Рейтинг</span>
-                        <div className='absolute right-4 top-1/2  -translate-y-1/2 flex'>
-                        <Icon icon='hugeicons:star' className='text-xl'/>
-                        <Icon icon='hugeicons:star' className='text-xl'/>
-                        <Icon icon='hugeicons:star' className='text-xl'/>
-                        <Icon icon='hugeicons:star' className='text-xl'/>
-                        <Icon icon='hugeicons:star' className='text-xl'/>
-                        </div>
-                      
-                      </div>
-                  </div>
+
+  <div className='w-full bg-white border rounded-md relative py-2 px-2'>
+
+    <span className=''>Рейтинг</span>
+
+    <div className="absolute right-4 top-1/2 -translate-y-1/2 flex">
+
+        {[1, 2, 3, 4, 5].map((starNumber) => (
+
+          <Icon
+
+            key={starNumber}
+
+            icon="typcn:star"
+
+            className={`text-xl cursor-pointer ${
+
+              starNumber <= filledStars ? 'text-yellow-500' : 'text-gray-300'
+
+            }`}
+
+            onClick={() => handleStarClick(starNumber)}
+
+          />
+
+        ))}
+
+      </div>
+
+  </div>
+
+</div>
                   
       </div>
 
